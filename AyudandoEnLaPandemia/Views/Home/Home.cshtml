@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "~/Views/Shared/MiPlantilla.cshtml";
+    ViewBag.Title = "Home";
+}
+
+<center class="text-info"><h2>"MENU"</h2></center>
+
+<br />
+<br />
+
+
+<a href="../Necesidad/CrearNecesidad">CREAR NECESIDAD</a>
+<br>
+<br />
+<a href="../Usuario/Home">HOME</a>
+<br>
+<br />
+<a href="../Usuario/MiPerfil">MI PERFIL</a>
+<br>
+<br />
+<a href="../Usuario/Denuncias">DENUNCIAS</a>
+<br>
+<br />
+<a href="../Usuario/AcercaDe">ACERCA DE</a>
+<br>
+<br />
+<a href="../Usuario/Logout">SALIR</a>
+<br>
+<br />
+
+
+
+
+
+
+
+@section miFooter{
+    <footer>
+        <p>&copy; @DateTime.Now.Year - </p>
+    </footer>
+
+}

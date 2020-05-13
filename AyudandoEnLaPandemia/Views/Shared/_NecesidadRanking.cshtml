@@ -1,0 +1,28 @@
+﻿
+@model List<AyudandoEnLaPandemia.Models.Necesidad>
+
+@{
+    ViewBag.Title = "_NecesidadRanking";
+}
+
+    <h2 class="text-capitalize">Ranking de necesidades:</h2>
+
+    <table>
+        <tr class="text-info">
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        @if(@Model != null){
+        foreach (AyudandoEnLaPandemia.Models.Necesidad u in @Model)
+        {
+            <tr>
+                <td>@u.Nombre </td>
+                <td>@u.Detalle </td>
+                <td>@u.ValoracionActual </td>
+            </tr>
+        }}
+
+    </table>
+
+    <a href="../Home/HomeNecesidad">Menu</a>

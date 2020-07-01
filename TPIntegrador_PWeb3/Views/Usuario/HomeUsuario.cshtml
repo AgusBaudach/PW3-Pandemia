@@ -1,0 +1,136 @@
+﻿@model TPIntegrador_PWeb3.DAL.Usuarios
+@{
+    ViewBag.Title = "HomeUsuario";
+}
+
+
+@if (TPIntegrador_PWeb3.Helper.SessionHelper.Nombre != null)
+{
+
+    <h4> ¡Bienvenido  @Model.Email !!</h4>
+    <h4> <a href="historiaL/@Model.IdUsuario">Historial donaciones</a></h4><br />
+    <form action="necesidadesActivas" method="get">
+        
+        <button type="submit" class="btn-lg">
+
+            VER SOLO MIS NECESIDADES ACTIVAS
+
+        </button>
+    </form>
+    if (@ViewBag.necesidadesActivas != null)
+    {
+        <h1> "Mis Necesidades Activas"</h1>
+        foreach (var item in @ViewBag.necesidadesActivas)
+        {
+
+            <h4>@item.Nombre</h4>
+            <h4>@item.Valoracion</h4>
+            <h4>@item.FechaFin</h4>
+
+
+            <a href="../Necesidades/detallesNecesidad/@item.IdNecesidad">Ver detalles </a>
+
+
+        }
+    }
+    else if(@Model.Necesidades != null)
+    {<h1> "Mis Necesidades"</h1>
+        foreach (var item in @Model.Necesidades)
+        {if(item.Estado != 0) { 
+
+            <h4>@item.Nombre</h4>
+            <h4>@item.Valoracion</h4>
+            <h4>@item.FechaFin</h4>
+
+            <a href="../Necesidades/detallesNecesidad/@item.IdNecesidad">Ver detalles </a>
+            if (item.FechaFin != null && item.FechaFin > DateTime.Now) { 
+
+
+            <a href="../Necesidades/modificarNecesidad/@item.IdNecesidad">Modificar</a>
+
+                }
+            }
+
+
+        }
+    }
+
+    if (@ViewBag.usuarios != null)
+    {
+
+        <h1> "Necesidades de otros usuarios"</h1>
+
+        foreach (var usuario in @ViewBag.usuarios)
+        {
+            <h4>Usuario: @usuario.Email</h4>
+            if (@usuario.Necesidades != null)
+            {
+
+                foreach (var item in @usuario.Necesidades)
+                {
+                    if (@item.Estado != 0)
+                    {
+                        <h4>@item.Nombre</h4>
+                        <h4>@item.Valoracion</h4>
+                        <h4>@item.FechaFin</h4>
+
+                        <a href="../Necesidades/detallesNecesidad/@item.IdNecesidad">Ver detalles </a>
+
+                    }
+                }
+            }
+        }
+    }
+
+    <br>
+    <a href="../Necesidades/crear">CREAR NECESIDAD</a>
+
+    if (Model.TipoUsuario == 1)
+    {
+        <a href="gestionarDenuncias">GESTIONAR DENUNCIAS</a>}
+
+    <br>
+    <br />
+    <a href="MiPerfil">MI PERFIL</a>
+
+
+    if (Model.Nombre != null)
+    {
+        <h2>
+            Bienvenido   @Model.Nombre !!!
+        </h2>
+        <br />
+
+        <img height="100" width="100" src="../img/@Model.Foto" />
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

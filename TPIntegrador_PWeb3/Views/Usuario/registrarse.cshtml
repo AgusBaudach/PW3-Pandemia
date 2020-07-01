@@ -1,0 +1,29 @@
+﻿@model TPIntegrador_PWeb3.DAL.Usuarios
+@{
+    ViewBag.Title = "registrarse";
+}
+
+<h2>Ingrese sus datos personales</h2><br />
+
+<form action="registrarUsuario" method="post">
+
+    Email:
+    <input type="text" name="Email" /><br />
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })<br />
+    Contraseña:
+    <input type="text" name="Password" /><br />
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })<br />
+    Repita la contraseña:
+    <input type="text" name="PasswordVerificacion" /><br />
+    @Html.ValidationMessageFor(model => model.PasswordVerificacion, "", new { @class = "text-danger" })<br />
+    Fecha de nacimiento:
+    <input type="datetime" name="FechaNacimiento" /><br />
+    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })<br />
+    <input type="hidden" name="TipoUsuario" value="2" />
+
+
+    <button class="btn btn-lg" type="submit">Registrarse</button>
+
+
+</form>
+

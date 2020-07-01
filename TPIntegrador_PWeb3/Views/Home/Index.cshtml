@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TPIntegrador_PWeb3.DAL.Necesidades>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+<center><h2>Ayudando en la Pandemia</h2></center>
+<br />
+
+<h3><a href="../Usuario/registrarse">REGISTRARSE</a></h3>
+<br />
+
+<h3><a href="../Usuario/ingresar">INGRESAR</a></h3><br />
+
+<h3>@ViewBag.msg</h3>
+
+@if (Model != null)
+{
+    <h3>Necesidades mas valoradas:</h3>
+    foreach (var item in Model)
+    {
+
+        <br />
+        <h4> Nombre:</h4>
+        @item.Nombre
+        <br />
+        <img src="../img/@item.Foto" width="50" height="50"/>
+        <br />
+        <h4> Usuario creador:</h4>
+        @item.Usuarios.Nombre
+        <br />
+        <h4> Valoracion actual:</h4>
+        @item.Valoracion
+        <br />
+        <h4> Fecha de creación:</h4>
+        @item.FechaCreacion
+        <br />
+        <a href="../Necesidades/detallesNecesidad?idNecesidad=@item.IdNecesidad"> <h4> Detalles</h4></a>
+        <br />
+
+
+    }
+}
+@section miFooter{
+    <footer>
+        <p>&copy; @DateTime.Now.Year - </p>
+    </footer>
+
+}
+

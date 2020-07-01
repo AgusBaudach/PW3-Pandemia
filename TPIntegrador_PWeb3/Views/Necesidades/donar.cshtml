@@ -1,0 +1,14 @@
+﻿@model TPIntegrador_PWeb3.DAL.DonacionesInsumos
+@{
+    ViewBag.Title = "donar";
+}
+
+<h2>Donar</h2><br />
+
+<form action="donarInsumos" method="post">
+    <input type="hidden" value="@ViewBag.IdInsumo" name="IdNecesidadDonacionInsumo" />
+    <input type="hidden" value="@ViewBag.IdUsuario" name="IdUsuario" />
+    Cantidad de insumos a donar:
+    <input type="text" name="Cantidad" /><br />
+    <button type="submit">Donar</button>
+</form>

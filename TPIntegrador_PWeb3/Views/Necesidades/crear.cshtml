@@ -1,0 +1,129 @@
+﻿@model TPIntegrador_PWeb3.DAL.Necesidades
+@{
+    ViewBag.Title = "crear";
+}
+<h3>@ViewBag.exceso</h3>
+<br />
+<h3>@ViewBag.creada</h3>
+<br />
+<h3 class="text-danger"><a href="../../Usuario/HomeUsuario">Home</a></h3>
+<br />
+<h3>@ViewBag.error</h3>
+<br />
+<h2>Ingrese su necesidad:</h2>
+
+<form action="crearNecesidad" method="post">
+    <div class="row">
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Nombre:
+                <input type="text" name="Nombre" /><br />
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Descripciòn:
+                <input type="text" name="Descripcion" /><br />
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Fecha de cierre:
+                <input type="datetime" name="FechaFin" /><br />
+                @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Telefono:
+                <input type="text" name="TelefonoContacto" /><br />
+                @Html.ValidationMessageFor(model => model.TelefonoContacto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Tipo de donaciòn:
+                <div>
+                    Monetaria<input type="checkbox" name="TipoDonacion" value="0" />
+                    Insumos<input type="checkbox" name="TipoDonacion" value="1" />
+                </div>
+                @Html.ValidationMessageFor(model => model.TipoDonacion, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Si seleccionó donacion monetaria:<br />
+
+                <h4> Cantidad:</h4>
+                <input type="text" name="dinero" /><br />
+                <h4> CBU:</h4>
+                <input type="text" name="cbu" />
+
+            </div>
+        </div><br />
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Si seleccionó insumos:<br />
+
+                <h4> Nombre:</h4>
+                <input type="text" name="nombreInsumos" /><br />
+                <h4> Cantidad:</h4>
+                <input type="text" name="cantidadInsumos" />
+
+            </div>
+        </div><br />
+
+
+
+
+
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Referencias:<br />
+
+                <h4> Nombre referencia uno:</h4>
+                <input type="text" name="nombreRef" /><br />
+                <h4> Telefono:</h4>
+                <input type="text" name="telefonoRef" /><br />
+                <h4> Nombre referencia dos:</h4>
+                <input type="text" name="nombreRef2" /><br />
+                <h4> Telefono:</h4>
+                <input type="text" name="telefonoRef2" /><br />
+
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="col-md-6">
+                Foto:<br />
+                <input type="file" name="Foto" />
+                <input type="hidden" name="Estado" value="1" />
+                <input type="hidden" name="IdUsuarioCreador" value="@ViewBag.id" />
+
+            </div><br />
+            <button type="submit">Crear</button>
+        </div>
+
+
+
+
+
+    </div>
+</form>
+

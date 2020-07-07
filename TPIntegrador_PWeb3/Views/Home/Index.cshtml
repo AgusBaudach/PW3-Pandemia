@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TPIntegrador_PWeb3.DAL.Necesidades>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+    <div class="container mt-5 p-3">
+        <div class="mt-5 row p-3">
+
+            <div class="col-md-4">
+                <h3>@Html.ActionLink("Log Out", "LogOut", "Usuario", new { area = "" }, new { @class = "navbar-brand, text-primary" })</h3>
+            </div>
+
+            <div class="col-md-4">
+                <form action="../Necesidades/buscar" method="post">
+                    <div class="text-danger">
+                        <h4>¿Cual es su necesidad?</h4>
+                        <input type="search" id="search" name="necesidad" /><br />
+                        Necesidades activas<input type="checkbox" name="activas" value="1" />
+                    </div>
+                    <button type="submit" id="enviar" value="Enviar" class="btn btn-primary btn-lg" />Buscar
+
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h3>@Html.ActionLink("Menu", "Menu", "Home", new { area = "" }, new { @class = "navbar-brand, text-primary" })</h3>
+            </div>
+        </div>
+
+       
+
+    </div>
+
+        <center><h2 class="text-success">Ayudando en la Pandemia</h2></center>
+        <br />
+
+        <h3><a href="../Usuario/registrarse">REGISTRARSE</a></h3>
+        <br />
+
+        <h3><a href="../Usuario/ingresar">INGRESAR</a></h3>
+        <br />
+
+        <h3>@ViewBag.msg</h3>
+        <div class="row">
+            @if (Model != null)
+            {
+                <h3>Necesidades mas valoradas:</h3><br />
+
+                foreach (var item in Model)
+                {
+
+                    <div class="col-md-6">
+                        <h4> Nombre:</h4>
+                        @item.Nombre
+                        <br />
+                        <img src="../img/@item.Foto" width="50" height="50" />
+                        <br />
+                        <h4> Usuario creador:</h4>
+                        @item.Usuarios.Nombre
+                        <br />
+                        @if (@item.NecesidadesValoraciones.Count != 0)
+                        {
+                        <h4>Valoracion actual:</h4>
+                        <h4> @item.NecesidadesValoraciones.Last().Valoracion</h4>
+                        }
+                        <br />
+                        <h4> Fecha de creación:</h4>
+                        @item.FechaCreacion
+                        <br />
+                        <a href="../Necesidades/detallesNecesidad/@item.IdNecesidad"> <h4> Detalles</h4></a>
+                        <br />
+                    </div>
+
+                }
+
+            }
+        </div>
+        @section miFooter{
+            <footer>
+                <p>&copy; @DateTime.Now.Year - </p>
+            </footer>
+
+        }
+

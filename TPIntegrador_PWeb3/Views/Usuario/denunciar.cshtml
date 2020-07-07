@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "denunciar";
+}
+
+<h2>Denunciar una necesidad:</h2><br />
+
+<form action="denunciarNecesidad" method="post">
+    <input type="hidden" value="@ViewBag.idNecesidad" name="IdNecesidad" />
+    <input type="hidden" value="@ViewBag.idUsuario" name="IdUsuario" />
+    <input type="hidden" value="1" name="Estado" />
+    Ingrese el motivo de su denuncia:<br />
+    @foreach (TPIntegrador_PWeb3.DAL.MotivoDenuncia md in ViewBag.motivos)
+    {
+        <input type="checkbox" value="@md.IdMotivoDenuncia" name="IdMotivo" />@md.Descripcion<br />
+    }<br><br />
+    Comentarios:<br />
+    <input type="text" name="Comentarios" /><br />
+    <button type="submit" >Denunciar</button>
+
+</form><br />
+       <h3><a href="HomeUsuario">Home</a></h3>
+

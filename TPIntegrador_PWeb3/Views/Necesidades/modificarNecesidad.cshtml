@@ -1,0 +1,41 @@
+﻿@model TPIntegrador_PWeb3.DAL.Necesidades
+@{
+    ViewBag.Title = "modificarNecesidad";
+}
+
+
+
+<h2>Modificar</h2>
+<br />
+
+<form action="../modificarNecesidadPost" method="post">
+    <input type="hidden" value="@Model.IdNecesidad" name="IdNecesidad" />
+    Descripcion:
+    <input type="text" placeholder="@Model.Descripcion" name="Descripcion" /><br />
+    Nombre:
+    <input type="text" placeholder="@Model.Nombre" name="Nombre" /><br />
+    Telefono:
+    <input type="text" placeholder="@Model.TelefonoContacto" name="TelefonoContacto" /><br />
+
+
+    <h4> Nombre de insumos:</h4>
+    <input type="text" name="nombreInsumos" /><br />
+    <h4> Cantidad:</h4>
+    <input type="text" name="cantidadInsumos" /> <br />
+
+    Si seleccionó donacion monetaria:<br />
+
+    <h4> Cantidad de dinero:</h4>
+    <input type="text" name="dinero" /><br />
+    <h4> CBU:</h4>
+    <input type="text" name="cbu" /><br />
+
+
+    <h4> Nombre Referencia:</h4>
+    <input type="text" name="nombreRef" /><br />
+    <h4> Telefono:</h4>
+    <input type="text" name="telefonoRef" /><br /><br />
+    <button type="submit">Modificar</button>
+</form><br />
+       <h3 class="text-danger"><a href="../../Usuario/HomeUsuario">Home</a></h3>
+

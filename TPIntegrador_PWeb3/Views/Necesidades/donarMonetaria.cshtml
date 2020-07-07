@@ -1,0 +1,23 @@
+﻿@model TPIntegrador_PWeb3.DAL.DonacionesMonetarias
+@{
+    ViewBag.Title = "donarMonetaria";
+}
+
+<h2>Donar:</h2>
+<br />
+
+<form action="donarMonetarias" method="post">
+    <input type="hidden" value="@ViewBag.IdMonetarias" name="IdNecesidadDonacionMonetaria" />
+    <input type="hidden" value="@ViewBag.IdUsuario" name="IdUsuario" />
+    Cantidad de dinero a donar:
+    <input type="text" name="Dinero" /><br />
+
+    Comprobante:
+    <input type="file" name="ArchivoTransferencia" /><br />
+    <button type="submit">Donar</button>
+</form>
+<br />
+<h3 class="text-danger"><a href="../../Usuario/HomeUsuario">Home</a></h3>
+<br />
+
+

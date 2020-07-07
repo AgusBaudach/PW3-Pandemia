@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TPIntegrador_PWeb3.DAL.Denuncias>
+
+@{
+    ViewBag.Title = "gestionarDenuncias";
+}
+
+<h2>Gestionar</h2>
+
+
+
+I
+@foreach (var item in Model)
+{
+    <h3>Comentarios:</h3>
+    @Html.DisplayFor(modelItem => item.Comentarios)
+    <br />
+    <h3>Fecha de creacion:</h3>
+    @Html.DisplayFor(modelItem => item.FechaCreacion)
+    <br />
+    
+    <h3>Descripcion:</h3>
+    @Html.DisplayFor(modelItem => item.MotivoDenuncia.Descripcion)<br />
+    <h3>Necesidad:</h3>
+    @Html.DisplayFor(modelItem => item.Necesidades.Nombre)<br />
+    <h3>Denunciante:</h3>
+    @Html.DisplayFor(modelItem => item.Usuarios.Nombre)<br />
+
+
+    <a href="../Necesidades/detalleNecesidad?idNecesidad=@item.IdNecesidad">Detalle de la necesidad</a>
+    <br />
+    <form action="gestionar" method="post">
+        <input type="hidden" value="0" name="Estado" />
+        <input type="hidden" value="@item.IdDenuncia" name="IdDenuncia" />
+        <button type="submit" class="btn btn-lg">Desestimar</button>
+    </form>
+    <br />
+
+    <form action="gestionar" method="post">
+        <input type="hidden" value="2" name="Estado" />
+        <input type="hidden" value="0" name="EstadoNecesidad" />
+        <input type="hidden" value="@item.IdDenuncia" name="IdDenuncia" />
+        <button type="submit" class="btn btn-lg">Denunciar</button>
+    </form>
+    <br />
+
+
+
+
+
+}
+<h3><a href="HomeUsuario">Home</a></h3>
+
+

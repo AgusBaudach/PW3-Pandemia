@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TPIntegrador_PWeb3.DAL.DonacionesInsumos>
+
+@{
+    ViewBag.Title = "historial";
+}
+
+<h2>Historial de donaciones</h2>
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NecesidadesDonacionesInsumos.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NecesidadesDonacionesInsumos.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuarios.Nombre)
+            </td>
+
+        </tr>
+    }
+
+</table>
+<br />
+@if(@ViewBag.monetarias != null){
+<h2>Donaciones monetarias</h2>
+foreach (TPIntegrador_PWeb3.DAL.DonacionesMonetarias nm in @ViewBag.monetarias)
+{
+    <h4>Cantidad de dinero:</h4>
+    @nm.Dinero
+    <br />
+
+    <h4>Donante:</h4>
+    @nm.Usuarios.Nombre
+    <br />
+    <h4>Comprobante:</h4>
+    <img src="../img/@nm.ArchivoTransferencia" height="100" width="100" />
+    <br />
+
+}}
+<h3><a href="../HomeUsuario">Home</a></h3>
+

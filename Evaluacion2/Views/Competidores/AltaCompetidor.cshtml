@@ -1,0 +1,17 @@
+﻿@model Evaluacion2.DAL.Competidor
+@{
+    ViewBag.Title = "AltaCompetidor";
+}
+
+<h2>Registrar un nuevo competidor:</h2>
+<br />
+<form action="GuardarCompetidor" method="post">
+    <input type="text" name="nombre" /><br />
+    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })<br />
+
+    <button type="submit">Crear</button>
+</form>
+
+
+
+

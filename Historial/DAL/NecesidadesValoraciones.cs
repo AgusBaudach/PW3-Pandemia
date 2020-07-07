@@ -15,9 +15,10 @@ namespace Historial.DAL
     public partial class NecesidadesValoraciones
     {
         public int IdValoracion { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdNecesidad { get; set; }
-        public bool Valoracion { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
+        public Nullable<int> IdNecesidad { get; set; }
+        public Nullable<int> Valoracion { get; set; }
+        public Nullable<bool> MeGusta { get; set; }
     
         public virtual Necesidades Necesidades { get; set; }
         public virtual Usuarios Usuarios { get; set; }

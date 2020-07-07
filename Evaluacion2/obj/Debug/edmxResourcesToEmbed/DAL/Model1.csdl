@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Evaluacion2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CantidadPremiosPorCompetidor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CantidadPremios" Type="Int32" />
+    <Property Name="Año" Type="Int32" />
+    <Property Name="idCompetidor" Type="Int32" />
+    <NavigationProperty Name="Competidor" Relationship="Self.FK__CantidadP__idCom__15502E78" FromRole="CantidadPremiosPorCompetidor" ToRole="Competidor" />
+  </EntityType>
+  <EntityType Name="Competidor">
+    <Key>
+      <PropertyRef Name="idCompetidor" />
+    </Key>
+    <Property Name="idCompetidor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CantidadPremiosPorCompetidor" Relationship="Self.FK__CantidadP__idCom__15502E78" FromRole="Competidor" ToRole="CantidadPremiosPorCompetidor" />
+  </EntityType>
+  <Association Name="FK__CantidadP__idCom__15502E78">
+    <End Role="Competidor" Type="Self.Competidor" Multiplicity="0..1" />
+    <End Role="CantidadPremiosPorCompetidor" Type="Self.CantidadPremiosPorCompetidor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competidor">
+        <PropertyRef Name="idCompetidor" />
+      </Principal>
+      <Dependent Role="CantidadPremiosPorCompetidor">
+        <PropertyRef Name="idCompetidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Evaluacion2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CantidadPremiosPorCompetidor" EntityType="Self.CantidadPremiosPorCompetidor" />
+    <EntitySet Name="Competidor" EntityType="Self.Competidor" />
+    <AssociationSet Name="FK__CantidadP__idCom__15502E78" Association="Self.FK__CantidadP__idCom__15502E78">
+      <End Role="Competidor" EntitySet="Competidor" />
+      <End Role="CantidadPremiosPorCompetidor" EntitySet="CantidadPremiosPorCompetidor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

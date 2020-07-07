@@ -8,7 +8,7 @@ namespace Historial.DAL
 {
     public abstract class RepositorioBase<T> : IRepositorio<T> where T : class
     {
-        public static Entities1 ctx = new Entities1();
+        public static Entities3 ctx = new Entities3();
 
         public DbSet<T> dbSet = ctx.Set<T>();
 

@@ -13,10 +13,10 @@ namespace Historial.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities1 : DbContext
+    public partial class Entities3 : DbContext
     {
-        public Entities1()
-            : base("name=Entities1")
+        public Entities3()
+            : base("name=Entities3")
         {
         }
     

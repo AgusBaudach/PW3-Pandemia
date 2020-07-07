@@ -5,15 +5,15 @@
       <PropertyRef Name="IdDenuncia" />
     </Key>
     <Property Name="IdDenuncia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdNecesidad" Type="Int32" Nullable="false" />
-    <Property Name="IdMotivo" Type="Int32" Nullable="false" />
-    <Property Name="Comentarios" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="MotivoDenuncia" Relationship="Self.FK_Denuncia_MotivoDenuncia" FromRole="Denuncias" ToRole="MotivoDenuncia" />
-    <NavigationProperty Name="Necesidades" Relationship="Self.FK_Denuncias_Necesidades" FromRole="Denuncias" ToRole="Necesidades" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Denuncias_Usuarios" FromRole="Denuncias" ToRole="Usuarios" />
+    <Property Name="IdNecesidad" Type="Int32" />
+    <Property Name="IdMotivo" Type="Int32" />
+    <Property Name="Comentarios" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <NavigationProperty Name="MotivoDenuncia" Relationship="Self.FK__Denuncias__IdMot__5165187F" FromRole="Denuncias" ToRole="MotivoDenuncia" />
+    <NavigationProperty Name="Necesidades" Relationship="Self.FK__Denuncias__IdNec__5070F446" FromRole="Denuncias" ToRole="Necesidades" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Denuncias__IdUsu__52593CB8" FromRole="Denuncias" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="DonacionesInsumos">
     <Key>
@@ -43,9 +43,9 @@
     <Key>
       <PropertyRef Name="IdMotivoDenuncia" />
     </Key>
-    <Property Name="IdMotivoDenuncia" Type="Int32" Nullable="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncia_MotivoDenuncia" FromRole="MotivoDenuncia" ToRole="Denuncias" />
+    <Property Name="IdMotivoDenuncia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK__Denuncias__IdMot__5165187F" FromRole="MotivoDenuncia" ToRole="Denuncias" />
   </EntityType>
   <EntityType Name="Necesidades">
     <Key>
@@ -62,12 +62,12 @@
     <Property Name="IdUsuarioCreador" Type="Int32" Nullable="false" />
     <Property Name="Estado" Type="Int32" Nullable="false" />
     <Property Name="Valoracion" Type="Decimal" Precision="18" Scale="0" />
-    <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Necesidades" FromRole="Necesidades" ToRole="Denuncias" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK__Denuncias__IdNec__5070F446" FromRole="Necesidades" ToRole="Denuncias" />
+    <NavigationProperty Name="NecesidadesValoraciones" Relationship="Self.FK__Necesidad__IdNec__5629CD9C" FromRole="Necesidades" ToRole="NecesidadesValoraciones" />
     <NavigationProperty Name="Usuarios" Relationship="Self.FK_Necesidades_Usuarios" FromRole="Necesidades" ToRole="Usuarios" />
     <NavigationProperty Name="NecesidadesDonacionesInsumos" Relationship="Self.FK_NecesidadesDonacionesInsumos_Necesidades" FromRole="Necesidades" ToRole="NecesidadesDonacionesInsumos" />
     <NavigationProperty Name="NecesidadesDonacionesMonetarias" Relationship="Self.FK_NecesidadesDonacionesMonetarias_Necesidades" FromRole="Necesidades" ToRole="NecesidadesDonacionesMonetarias" />
     <NavigationProperty Name="NecesidadesReferencias" Relationship="Self.FK_NecesidadesReferencias_Necesidades" FromRole="Necesidades" ToRole="NecesidadesReferencias" />
-    <NavigationProperty Name="NecesidadesValoraciones" Relationship="Self.FK_NecesidadesValoraciones_Necesidades" FromRole="Necesidades" ToRole="NecesidadesValoraciones" />
   </EntityType>
   <EntityType Name="NecesidadesDonacionesInsumos">
     <Key>
@@ -106,11 +106,12 @@
       <PropertyRef Name="IdValoracion" />
     </Key>
     <Property Name="IdValoracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-    <Property Name="IdNecesidad" Type="Int32" Nullable="false" />
-    <Property Name="Valoracion" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Necesidades" Relationship="Self.FK_NecesidadesValoraciones_Necesidades" FromRole="NecesidadesValoraciones" ToRole="Necesidades" />
-    <NavigationProperty Name="Usuarios" Relationship="Self.FK_NecesidadesValoraciones_Usuarios" FromRole="NecesidadesValoraciones" ToRole="Usuarios" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="IdNecesidad" Type="Int32" />
+    <Property Name="Valoracion" Type="Int32" />
+    <Property Name="MeGusta" Type="Boolean" />
+    <NavigationProperty Name="Necesidades" Relationship="Self.FK__Necesidad__IdNec__5629CD9C" FromRole="NecesidadesValoraciones" ToRole="Necesidades" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Necesidad__IdUsu__5535A963" FromRole="NecesidadesValoraciones" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -128,14 +129,14 @@
     <Property Name="FechaCracion" Type="DateTime" Precision="3" />
     <Property Name="Activo" Type="Boolean" />
     <Property Name="Token" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Usuarios" FromRole="Usuarios" ToRole="Denuncias" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK__Denuncias__IdUsu__52593CB8" FromRole="Usuarios" ToRole="Denuncias" />
     <NavigationProperty Name="DonacionesInsumos" Relationship="Self.FK_DonacionesInsumos_Usuarios" FromRole="Usuarios" ToRole="DonacionesInsumos" />
     <NavigationProperty Name="DonacionesMonetarias" Relationship="Self.FK_DonacionesMonetarias_Usuarios" FromRole="Usuarios" ToRole="DonacionesMonetarias" />
     <NavigationProperty Name="Necesidades" Relationship="Self.FK_Necesidades_Usuarios" FromRole="Usuarios" ToRole="Necesidades" />
-    <NavigationProperty Name="NecesidadesValoraciones" Relationship="Self.FK_NecesidadesValoraciones_Usuarios" FromRole="Usuarios" ToRole="NecesidadesValoraciones" />
+    <NavigationProperty Name="NecesidadesValoraciones" Relationship="Self.FK__Necesidad__IdUsu__5535A963" FromRole="Usuarios" ToRole="NecesidadesValoraciones" />
   </EntityType>
-  <Association Name="FK_Denuncia_MotivoDenuncia">
-    <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="1" />
+  <Association Name="FK__Denuncias__IdMot__5165187F">
+    <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="0..1" />
     <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MotivoDenuncia">
@@ -146,8 +147,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Denuncias_Necesidades">
-    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="1" />
+  <Association Name="FK__Denuncias__IdNec__5070F446">
+    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="0..1" />
     <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Necesidades">
@@ -158,8 +159,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Denuncias_Usuarios">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+  <Association Name="FK__Denuncias__IdUsu__52593CB8">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
     <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
@@ -218,6 +219,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Necesidad__IdNec__5629CD9C">
+    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="0..1" />
+    <End Role="NecesidadesValoraciones" Type="Self.NecesidadesValoraciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Necesidades">
+        <PropertyRef Name="IdNecesidad" />
+      </Principal>
+      <Dependent Role="NecesidadesValoraciones">
+        <PropertyRef Name="IdNecesidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Necesidades_Usuarios">
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
     <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="*" />
@@ -266,20 +279,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_NecesidadesValoraciones_Necesidades">
-    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="1" />
-    <End Role="NecesidadesValoraciones" Type="Self.NecesidadesValoraciones" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Necesidades">
-        <PropertyRef Name="IdNecesidad" />
-      </Principal>
-      <Dependent Role="NecesidadesValoraciones">
-        <PropertyRef Name="IdNecesidad" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_NecesidadesValoraciones_Usuarios">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+  <Association Name="FK__Necesidad__IdUsu__5535A963">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
     <End Role="NecesidadesValoraciones" Type="Self.NecesidadesValoraciones" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
@@ -290,7 +291,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Denuncias" EntityType="Self.Denuncias" />
     <EntitySet Name="DonacionesInsumos" EntityType="Self.DonacionesInsumos" />
     <EntitySet Name="DonacionesMonetarias" EntityType="Self.DonacionesMonetarias" />
@@ -301,15 +302,15 @@
     <EntitySet Name="NecesidadesReferencias" EntityType="Self.NecesidadesReferencias" />
     <EntitySet Name="NecesidadesValoraciones" EntityType="Self.NecesidadesValoraciones" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
-    <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Self.FK_Denuncia_MotivoDenuncia">
+    <AssociationSet Name="FK__Denuncias__IdMot__5165187F" Association="Self.FK__Denuncias__IdMot__5165187F">
       <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
       <End Role="Denuncias" EntitySet="Denuncias" />
     </AssociationSet>
-    <AssociationSet Name="FK_Denuncias_Necesidades" Association="Self.FK_Denuncias_Necesidades">
+    <AssociationSet Name="FK__Denuncias__IdNec__5070F446" Association="Self.FK__Denuncias__IdNec__5070F446">
       <End Role="Necesidades" EntitySet="Necesidades" />
       <End Role="Denuncias" EntitySet="Denuncias" />
     </AssociationSet>
-    <AssociationSet Name="FK_Denuncias_Usuarios" Association="Self.FK_Denuncias_Usuarios">
+    <AssociationSet Name="FK__Denuncias__IdUsu__52593CB8" Association="Self.FK__Denuncias__IdUsu__52593CB8">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Denuncias" EntitySet="Denuncias" />
     </AssociationSet>
@@ -329,6 +330,10 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="DonacionesMonetarias" EntitySet="DonacionesMonetarias" />
     </AssociationSet>
+    <AssociationSet Name="FK__Necesidad__IdNec__5629CD9C" Association="Self.FK__Necesidad__IdNec__5629CD9C">
+      <End Role="Necesidades" EntitySet="Necesidades" />
+      <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
+    </AssociationSet>
     <AssociationSet Name="FK_Necesidades_Usuarios" Association="Self.FK_Necesidades_Usuarios">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Necesidades" EntitySet="Necesidades" />
@@ -345,11 +350,7 @@
       <End Role="Necesidades" EntitySet="Necesidades" />
       <End Role="NecesidadesReferencias" EntitySet="NecesidadesReferencias" />
     </AssociationSet>
-    <AssociationSet Name="FK_NecesidadesValoraciones_Necesidades" Association="Self.FK_NecesidadesValoraciones_Necesidades">
-      <End Role="Necesidades" EntitySet="Necesidades" />
-      <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
-    </AssociationSet>
-    <AssociationSet Name="FK_NecesidadesValoraciones_Usuarios" Association="Self.FK_NecesidadesValoraciones_Usuarios">
+    <AssociationSet Name="FK__Necesidad__IdUsu__5535A963" Association="Self.FK__Necesidad__IdUsu__5535A963">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
     </AssociationSet>

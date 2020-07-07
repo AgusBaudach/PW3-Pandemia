@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities1">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities3">
     <EntitySetMapping Name="Denuncias">
       <EntityTypeMapping TypeName="Model.Denuncias">
         <MappingFragment StoreEntitySet="Denuncias">
@@ -8,9 +8,9 @@
           <ScalarProperty Name="IdNecesidad" ColumnName="IdNecesidad" />
           <ScalarProperty Name="IdMotivo" ColumnName="IdMotivo" />
           <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
-          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
           <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -98,6 +98,7 @@
           <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
           <ScalarProperty Name="IdNecesidad" ColumnName="IdNecesidad" />
           <ScalarProperty Name="Valoracion" ColumnName="Valoracion" />
+          <ScalarProperty Name="MeGusta" ColumnName="MeGusta" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -15,12 +15,12 @@ namespace Historial.DAL
     public partial class Denuncias
     {
         public int IdDenuncia { get; set; }
-        public int IdNecesidad { get; set; }
-        public int IdMotivo { get; set; }
+        public Nullable<int> IdNecesidad { get; set; }
+        public Nullable<int> IdMotivo { get; set; }
         public string Comentarios { get; set; }
-        public int IdUsuario { get; set; }
-        public System.DateTime FechaCreacion { get; set; }
-        public int Estado { get; set; }
+        public Nullable<System.DateTime> FechaCreacion { get; set; }
+        public Nullable<int> Estado { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
     
         public virtual MotivoDenuncia MotivoDenuncia { get; set; }
         public virtual Necesidades Necesidades { get; set; }

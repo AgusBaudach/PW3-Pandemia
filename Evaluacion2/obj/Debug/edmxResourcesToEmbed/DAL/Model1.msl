@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Evaluacion2ModelStoreContainer" CdmEntityContainer="Evaluacion2Entities">
+    <EntitySetMapping Name="CantidadPremiosPorCompetidor">
+      <EntityTypeMapping TypeName="Evaluacion2Model.CantidadPremiosPorCompetidor">
+        <MappingFragment StoreEntitySet="CantidadPremiosPorCompetidor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CantidadPremios" ColumnName="CantidadPremios" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="idCompetidor" ColumnName="idCompetidor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competidor">
+      <EntityTypeMapping TypeName="Evaluacion2Model.Competidor">
+        <MappingFragment StoreEntitySet="Competidor">
+          <ScalarProperty Name="idCompetidor" ColumnName="idCompetidor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -5,12 +5,12 @@
       <PropertyRef Name="IdDenuncia" />
     </Key>
     <Property Name="IdDenuncia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdNecesidad" Type="int" Nullable="false" />
-    <Property Name="IdMotivo" Type="int" Nullable="false" />
-    <Property Name="Comentarios" Type="nvarchar" MaxLength="300" Nullable="false" />
-    <Property Name="IdUsuario" Type="int" Nullable="false" />
-    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
-    <Property Name="Estado" Type="int" Nullable="false" />
+    <Property Name="IdNecesidad" Type="int" />
+    <Property Name="IdMotivo" Type="int" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="255" />
+    <Property Name="FechaCreacion" Type="datetime" />
+    <Property Name="Estado" Type="int" />
+    <Property Name="IdUsuario" Type="int" />
   </EntityType>
   <EntityType Name="DonacionesInsumos">
     <Key>
@@ -36,8 +36,8 @@
     <Key>
       <PropertyRef Name="IdMotivoDenuncia" />
     </Key>
-    <Property Name="IdMotivoDenuncia" Type="int" Nullable="false" />
-    <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="IdMotivoDenuncia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Necesidades">
     <Key>
@@ -87,9 +87,10 @@
       <PropertyRef Name="IdValoracion" />
     </Key>
     <Property Name="IdValoracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdUsuario" Type="int" Nullable="false" />
-    <Property Name="IdNecesidad" Type="int" Nullable="false" />
-    <Property Name="Valoracion" Type="bit" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="IdNecesidad" Type="int" />
+    <Property Name="Valoracion" Type="int" />
+    <Property Name="MeGusta" Type="bit" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -108,8 +109,8 @@
     <Property Name="Activo" Type="bit" />
     <Property Name="Token" Type="varchar" MaxLength="255" />
   </EntityType>
-  <Association Name="FK_Denuncia_MotivoDenuncia">
-    <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="1" />
+  <Association Name="FK__Denuncias__IdMot__5165187F">
+    <End Role="MotivoDenuncia" Type="Self.MotivoDenuncia" Multiplicity="0..1" />
     <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MotivoDenuncia">
@@ -120,8 +121,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Denuncias_Necesidades">
-    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="1" />
+  <Association Name="FK__Denuncias__IdNec__5070F446">
+    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="0..1" />
     <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Necesidades">
@@ -132,14 +133,38 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Denuncias_Usuarios">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+  <Association Name="FK__Denuncias__IdUsu__52593CB8">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
     <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
         <PropertyRef Name="IdUsuario" />
       </Principal>
       <Dependent Role="Denuncias">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Necesidad__IdNec__5629CD9C">
+    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="0..1" />
+    <End Role="NecesidadesValoraciones" Type="Self.NecesidadesValoraciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Necesidades">
+        <PropertyRef Name="IdNecesidad" />
+      </Principal>
+      <Dependent Role="NecesidadesValoraciones">
+        <PropertyRef Name="IdNecesidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Necesidad__IdUsu__5535A963">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="NecesidadesValoraciones" Type="Self.NecesidadesValoraciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="NecesidadesValoraciones">
         <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
@@ -240,30 +265,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_NecesidadesValoraciones_Necesidades">
-    <End Role="Necesidades" Type="Self.Necesidades" Multiplicity="1" />
-    <End Role="NecesidadesValoraciones" Type="Self.NecesidadesValoraciones" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Necesidades">
-        <PropertyRef Name="IdNecesidad" />
-      </Principal>
-      <Dependent Role="NecesidadesValoraciones">
-        <PropertyRef Name="IdNecesidad" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_NecesidadesValoraciones_Usuarios">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-    <End Role="NecesidadesValoraciones" Type="Self.NecesidadesValoraciones" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="IdUsuario" />
-      </Principal>
-      <Dependent Role="NecesidadesValoraciones">
-        <PropertyRef Name="IdUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="Denuncias" EntityType="Self.Denuncias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DonacionesInsumos" EntityType="Self.DonacionesInsumos" Schema="dbo" store:Type="Tables" />
@@ -275,17 +276,25 @@
     <EntitySet Name="NecesidadesReferencias" EntityType="Self.NecesidadesReferencias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NecesidadesValoraciones" EntityType="Self.NecesidadesValoraciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Denuncia_MotivoDenuncia" Association="Self.FK_Denuncia_MotivoDenuncia">
+    <AssociationSet Name="FK__Denuncias__IdMot__5165187F" Association="Self.FK__Denuncias__IdMot__5165187F">
       <End Role="MotivoDenuncia" EntitySet="MotivoDenuncia" />
       <End Role="Denuncias" EntitySet="Denuncias" />
     </AssociationSet>
-    <AssociationSet Name="FK_Denuncias_Necesidades" Association="Self.FK_Denuncias_Necesidades">
+    <AssociationSet Name="FK__Denuncias__IdNec__5070F446" Association="Self.FK__Denuncias__IdNec__5070F446">
       <End Role="Necesidades" EntitySet="Necesidades" />
       <End Role="Denuncias" EntitySet="Denuncias" />
     </AssociationSet>
-    <AssociationSet Name="FK_Denuncias_Usuarios" Association="Self.FK_Denuncias_Usuarios">
+    <AssociationSet Name="FK__Denuncias__IdUsu__52593CB8" Association="Self.FK__Denuncias__IdUsu__52593CB8">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Necesidad__IdNec__5629CD9C" Association="Self.FK__Necesidad__IdNec__5629CD9C">
+      <End Role="Necesidades" EntitySet="Necesidades" />
+      <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Necesidad__IdUsu__5535A963" Association="Self.FK__Necesidad__IdUsu__5535A963">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
     </AssociationSet>
     <AssociationSet Name="FK_DonacionesInsumos_NecesidadesDonacionesInsumos" Association="Self.FK_DonacionesInsumos_NecesidadesDonacionesInsumos">
       <End Role="NecesidadesDonacionesInsumos" EntitySet="NecesidadesDonacionesInsumos" />
@@ -318,14 +327,6 @@
     <AssociationSet Name="FK_NecesidadesReferencias_Necesidades" Association="Self.FK_NecesidadesReferencias_Necesidades">
       <End Role="Necesidades" EntitySet="Necesidades" />
       <End Role="NecesidadesReferencias" EntitySet="NecesidadesReferencias" />
-    </AssociationSet>
-    <AssociationSet Name="FK_NecesidadesValoraciones_Necesidades" Association="Self.FK_NecesidadesValoraciones_Necesidades">
-      <End Role="Necesidades" EntitySet="Necesidades" />
-      <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
-    </AssociationSet>
-    <AssociationSet Name="FK_NecesidadesValoraciones_Usuarios" Association="Self.FK_NecesidadesValoraciones_Usuarios">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="NecesidadesValoraciones" EntitySet="NecesidadesValoraciones" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
